@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/user.css">
+    <title>Users Page</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Username</th>
+    </tr>
+    <% for(let user of data) { %>
+        <tr>
+  <td data-label="Id"><%= user.id %></td>
+  <td data-label="Email"><%= user.email %></td>
+  <td data-label="Username"><%= user.username %></td>
+  <td>
+    <form method="get" action="http://localhost:8080/user/<%=user.id%>/edit">
+      <button>Edit username</button>
+    </form>
+  </td>
+</tr>
+
+    <% } %>
+</table>
+
+
+</body>
+</html>
