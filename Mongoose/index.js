@@ -57,7 +57,38 @@ User.findByIdAndUpdate('6826c66c29518108534844cf' , {age : 18} , {new : true} ).
   console.log(res);
 }).catch((err)=>{
   console.log(err);
+});
+
+
+//-------------- Delete method in mongoose -------------------
+
+// User.deleteOne({name : "adam"}).then((res)=>{
+//   console.log(res);
+// }).catch((err)=>{
+//   console.log(err);
+// })
+
+// User.deleteMany({age : {$gte : 42}}).then((res)=>{
+//   console.log(res);
+// }).catch((err)=>{
+//   console.log(err);
+// })
+
+
+
+// User.findByIdAndDelete('6826c66c29518108534844cf').then((res)=>{
+//   console.log(res);
+// }).catch((err)=>{
+//   console.log(err);
+// });
+
+
+User.findOneAndDelete({name : "bob"}).then((res)=>{console.log(res)}).catch((err)=>{
+  console.log(err);
 })
+
+
+//----------- Insert method in mongoose --------------
 
 
 // User.insertMany([
