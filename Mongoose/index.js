@@ -20,13 +20,21 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User" , userSchema);
 
-User.insertMany([
-{name : "tarun" , email : "tarun@gmail.com" , age :23},
-{name : "shobit" , email : "shobit@gmail.com" , age :23},
-{name : "gorgia" , email : "gorgia@gmail.com" , age :23},
-]).then((data)=>{
-  console.log(data);
+// User.findOne({_id : "6826c23daf7cc3318fb4b4f0"}).then(res => console.log(res)).catch((err)=>{
+//   console.log(err);
+// })
+
+User.find({age : {$gte : 47}}).then(res => console.log(res[0]._id.toString())).catch((err)=>{
+  console.log(err);
 })
+
+// User.insertMany([
+// {name : "tarun" , email : "tarun@gmail.com" , age :23},
+// {name : "shobit" , email : "shobit@gmail.com" , age :23},
+// {name : "gorgia" , email : "gorgia@gmail.com" , age :23},
+// ]).then((data)=>{
+//   console.log(data);
+// })
 
 
 
