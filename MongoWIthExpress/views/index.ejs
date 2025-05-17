@@ -9,18 +9,35 @@
     <title>Mini Whatsapp</title>
 </head>
 <body>
-    <h3>All chats</h3>
- <%for(let chat of chats){ %>
-    <div class="chat">
-        <p>From : <%=chat.from %> </p>
-        <div class="msg">
-   <p>  Message : <%=chat.message %></p>
-        </div>
+  <h3>All Chats</h3>
+<form method="get" action="/chats/new">
+  <button>New chat</button>
+</form>
+
+<% for (let chat of chats) { %>
+  <div class="chat">
+    <p><strong>From:</strong> <%= chat.from %></p>
+
+    <div class="msg">
+      <p><%= chat.message %></p>
       
-         <p>Recieved by : <%=chat.to %></p>
-       
+      <form method="get" action="/chats/<%=chat._id%>/edit">
+        <button>Edit</button>
+      </form>
+
     </div>
-<%} %>
+    <form method="post" action="/chats/<%=chat._id%>?_method=DELETE">
+        <button>DELETE</button>
+    </form>
+    <p><strong>To:</strong> <%= chat.to %></p>
+    
+    <div class="timestamp">
+      <span><%= chat.created_at.toString().split(' ')[4] %></span>
+      <span><%= chat.created_at.toString().split(' ').slice(0,4).join(' ') %></span>
+    </div>
+  </div>
+<% } %>
+
 </body>
 </html>
 

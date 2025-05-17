@@ -1,0 +1,118 @@
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body setup */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 0 16px;
+}
+
+/* Header */
+header {
+  width: 100%;
+  background-color: #1e1e1e;
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  animation: fadeInDown 0.6s ease;
+}
+
+header h1 {
+  font-size: 1.6rem;
+  color: #ffffff;
+}
+
+/* Main Section */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 400px; /* 🔹 Smaller card */
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+  animation: fadeInUp 0.7s ease;
+}
+
+/* Form Styling */
+form {
+  background-color: #1f1f1f;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Label + Info Text */
+label {
+  font-weight: 600;
+  color: #cccccc;
+}
+
+form p {
+  font-size: 0.9rem;
+  color: #aaaaaa;
+  line-height: 1.4;
+  margin-top: -10px;
+}
+
+/* Textarea */
+textarea {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+textarea:focus {
+  border-color: #00bfa5;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 191, 165, 0.5);
+}
+
+/* Submit Button */
+button {
+  background-color: #00bfa5;
+  color: #121212;
+  font-weight: 600;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #1de9b6;
+  transform: scale(1.03);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

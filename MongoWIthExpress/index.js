@@ -6,7 +6,9 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 const Chat = require("./models/chat");
+const methodOverride = require('method-override')
 
+app.use(methodOverride('_method'));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
@@ -23,7 +25,8 @@ main()
   });
 
   app.use(express.static(path.join(__dirname , '/public')));
-
+  app.use(express.urlencoded({extended:true}));
+  app.use(express.json());
   // --------INDEX ROUTE ----------
 
   app.get('/chats' , async(req  , res)=>{
@@ -32,6 +35,58 @@ main()
        res.render('index.ejs' , {chats});
   });
 
+
+  //---------------NEW ROUTE---------
+
+  app.get('/chats/new' , (req , res)=>{
+    res.render('new.ejs');
+  })
+
+
+  //-------POST ROUTE----------
+  app.post('/chats', (req , res)=>{
+    let {from ,message , to  } = req.body;
+    let newchat = new Chat({from : `${from}` , message : `${message}` , to : `${to}` ,created_at : new Date() });
+    newchat.save().then(()=>{
+        res.redirect('/chats');
+    }).catch((err)=>{
+        res.send('Error ocuured');
+    })
+   
+    
+  })
+
+//-----------Edit Route------------
+app.get('/chats/:id/edit' , async(req , res)=>{
+    let {id} = req.params;
+    let chat = await Chat.findById(id);
+    console.log(chat);
+    res.render('editForm.ejs' , {chat});
+})
+
+
+//-----------PUT ROUTE----------------
+
+app.put('/chats/:id' , (req , res)=>{
+    let {message} = req.body;
+    let {id} = req.params;
+    Chat.findByIdAndUpdate({_id : `${id}`} , {message : `${message}`} , {runValidators : true} ).then(()=>{
+        res.redirect('/chats');
+    }).catch((err)=>{
+        console.log(err);
+        res.send("ERROR OCCURED");
+    })
+})
+
+//---------DELETE ROUTE------------
+app.delete('/chats/:id' ,  (req , res)=>{
+    let {id} = req.params;
+    Chat.findByIdAndDelete(`${id}`).then(()=>{
+        res.redirect('/chats');
+    }).catch((err)=>{
+        res.send(err);
+    });
+})
 
 
 app.get("/", (req, res) => {

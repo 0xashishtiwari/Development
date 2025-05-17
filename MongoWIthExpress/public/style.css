@@ -1,74 +1,157 @@
+/* Reset Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  /* Base Reset & Font */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* Global Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: auto;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Heading */
+h3 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #ffffff;
+  animation: fadeInDown 0.8s ease;
+}
+
+/* New Chat Button */
+form[action="/chats/new"] {
+  text-align: center;
+  margin-bottom: 30px;
+  animation: fadeIn 1s ease;
+}
+
+form[action="/chats/new"] button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #00c853;
+  color: #121212;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form[action="/chats/new"] button:hover {
+  background-color: #00e676;
+  transform: scale(1.05);
+}
+
+/* Chat Card */
+.chat {
+  background-color: #1e1e1e;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  animation: fadeInUp 0.6s ease both;
+  transition: transform 0.3s ease;
+}
+
+.chat:hover {
+  transform: translateY(-4px);
+}
+
+/* Message Box */
+.msg {
+  background-color: #2a2a2a;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 10px 0;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.msg:hover {
+  background-color: #333;
+}
+
+.msg p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+  color: #ddd;
+}
+
+/* Button Styling */
+.msg form button,
+.chat form[action*="DELETE"] button {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Edit button */
+.msg form button {
+  background-color: #2979ff;
+  color: white;
+}
+
+.msg form button:hover {
+  background-color: #448aff;
+  transform: scale(1.05);
+}
+
+/* Delete button */
+.chat form[action*="DELETE"] button {
+  margin-top: 10px;
+  background-color: #e53935;
+  color: white;
+}
+
+.chat form[action*="DELETE"] button:hover {
+  background-color: #ff5252;
+  transform: scale(1.05);
+}
+
+/* Timestamp */
+.timestamp {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #888;
+  display: flex;
+  justify-content: space-between;
+  font-style: italic;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
-    min-height: 100vh;
-    padding: 40px 20px;
-    color: #333;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  h3 {
-    text-align: center;
-    color: #2e7d32;
-    font-size: 2rem;
-    margin-bottom: 40px;
-    font-weight: 600;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-
-  .chat {
-    background: white;
-    border-radius: 14px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 600px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    border-left: 6px solid #81c784;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-
-  .chat:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  }
-
-  .chat p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 8px;
-  }
-
-  .msg {
-    background: #e8f5e9;
-    padding: 14px;
-    border-radius: 10px;
-    font-weight: 500;
-    color: #2e7d32;
-    border: 1px solid #c8e6c9;
-  }
-
-  /* Chat message label styling */
-  .msg::before {
-    content: "💬 ";
-    font-size: 1.2em;
-    margin-right: 6px;
-  }
-
-  /* Responsive */
-  @media (max-width: 700px) {
-    .chat {
-      margin: 10px 10px;
-      padding: 15px;
-    }
-
-    h3 {
-      font-size: 1.6rem;
-    }
-  }
-
+}
