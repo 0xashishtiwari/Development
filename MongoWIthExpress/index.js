@@ -30,8 +30,9 @@ main()
   // --------INDEX ROUTE ----------
 
   app.get('/chats' , async(req  , res)=>{
+      console.log(req.method , req.url);
        let chats =  await Chat.find({});
-       console.log(chats);
+      //  console.log(chats);
        res.render('index.ejs' , {chats});
   });
 
@@ -39,12 +40,14 @@ main()
   //---------------NEW ROUTE---------
 
   app.get('/chats/new' , (req , res)=>{
+     console.log(req.method , req.url);
     res.render('new.ejs');
   })
 
 
   //-------POST ROUTE----------
   app.post('/chats', (req , res)=>{
+     console.log(req.method , req.url);
     let {from ,message , to  } = req.body;
     let newchat = new Chat({from : `${from}` , message : `${message}` , to : `${to}` ,created_at : new Date() });
     newchat.save().then(()=>{
@@ -58,6 +61,7 @@ main()
 
 //-----------Edit Route------------
 app.get('/chats/:id/edit' , async(req , res)=>{
+   console.log(req.method , req.url);
     let {id} = req.params;
     let chat = await Chat.findById(id);
     console.log(chat);
@@ -68,6 +72,7 @@ app.get('/chats/:id/edit' , async(req , res)=>{
 //-----------PUT ROUTE----------------
 
 app.put('/chats/:id' , (req , res)=>{
+   console.log(req.method , req.url);
     let {message} = req.body;
     let {id} = req.params;
     Chat.findByIdAndUpdate({_id : `${id}`} , {message : `${message}`} , {runValidators : true} ).then(()=>{
@@ -80,6 +85,7 @@ app.put('/chats/:id' , (req , res)=>{
 
 //---------DELETE ROUTE------------
 app.delete('/chats/:id' ,  (req , res)=>{
+   console.log(req.method , req.url);
     let {id} = req.params;
     Chat.findByIdAndDelete(`${id}`).then(()=>{
         res.redirect('/chats');
@@ -90,9 +96,10 @@ app.delete('/chats/:id' ,  (req , res)=>{
 
 
 app.get("/", (req, res) => {
+   console.log(req.method , req.url);
   res.send("Root is working");
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`App listening to port ${PORT}`);
 });
