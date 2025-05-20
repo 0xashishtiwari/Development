@@ -70,3 +70,7 @@ logs/
 # Environment files
 .env*
 *.env.local
+
+
+# custom folders
+/MAJORPROJECT
