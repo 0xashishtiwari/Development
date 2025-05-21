@@ -95,6 +95,12 @@ app.delete('/chats/:id' ,  (req , res)=>{
 })
 
 
+function asyncWrap(fn){
+  return function(req , res, next){
+    fn(req , res, next).catch(err)=>next(err);
+  }
+}
+
 app.get("/", (req, res) => {
    console.log(req.method , req.url);
   res.send("Root is working");
